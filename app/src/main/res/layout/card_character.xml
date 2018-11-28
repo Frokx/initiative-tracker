@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_character"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:id="@+id/layout_card_content"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/tvCharacterName"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Character Name" tools:ignore="HardcodedText"/>
+
+            <TextView
+                    android:id="@+id/initiative_modifier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvCharacterName"
+                    android:layout_marginEnd="3dp"
+                    android:text="@string/player_cardview_initmodifier" />
+
+            <TextView
+                    android:id="@+id/tvRolledInit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvCharacterName"
+                    android:layout_toEndOf="@+id/initiative_modifier"
+                    android:hint="+X" tools:ignore="HardcodedText" />
+
+            <TextView
+                    android:id="@+id/tvFighterHp"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/hit_points_fighter"
+                    android:text="34" tools:ignore="HardcodedText"/>
+            <TextView
+                    android:id="@+id/hit_points_fighter"
+                    android:layout_marginStart="3dp"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="HP" tools:ignore="HardcodedText"/>
+
+            <TextView
+                    android:id="@+id/tvFighterAc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/initiative_modifier"
+                    android:layout_toStartOf="@+id/armor_class_fighter"
+                    android:text="18" tools:ignore="HardcodedText"/>
+            <TextView
+                    android:id="@+id/armor_class_fighter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="3dp"
+                    android:layout_alignTop="@+id/initiative_modifier"
+                    android:text="AC" tools:ignore="HardcodedText"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

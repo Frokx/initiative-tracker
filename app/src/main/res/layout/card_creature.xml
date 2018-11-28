@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_creature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:id="@+id/layout_card_content"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/tvCreatureName"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Creature Name" tools:ignore="HardcodedText"/>
+
+        <TextView
+                android:id="@+id/initiative_modifier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvCreatureName"
+                android:layout_marginEnd="3dp"
+                android:text="@string/player_cardview_initmodifier" />
+
+        <TextView
+                android:id="@+id/tvCreatureInit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvCreatureName"
+                android:layout_toEndOf="@+id/initiative_modifier"
+                android:hint="+X" tools:ignore="HardcodedText" />
+
+        <TextView
+                android:id="@+id/tvCreatureHp"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/hit_points_creature"
+                android:text="34" tools:ignore="HardcodedText"/>
+        <TextView
+                android:id="@+id/hit_points_creature"
+                android:layout_marginStart="3dp"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="HP" tools:ignore="HardcodedText"/>
+
+        <TextView
+                android:id="@+id/tvCreatureAc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/initiative_modifier"
+                android:layout_toStartOf="@+id/armor_class_creature"
+                android:text="18" tools:ignore="HardcodedText"/>
+        <TextView
+                android:id="@+id/armor_class_creature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="3dp"
+                android:layout_alignTop="@+id/initiative_modifier"
+                android:text="AC" tools:ignore="HardcodedText"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

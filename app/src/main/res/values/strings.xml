@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Initiative Tracker</string>
+
+    <!-- Add Campaign Activity -->
+    <string name="add_campaign_activity_name">New Campaign</string>
+    <string name="add_campaign_tv_game_name">Game Name</string>
+    <string name="add_campaign_tv_campaign_name">Campaign Name</string>
+    <string name="add_campaign_but_create_campaign">Create</string>
+    <string name="add_campaign_success">Success</string>
+    <string name="add_campaign_failure">Failure</string>
+    <string name="add_campaign_fill_the_blanks">Please make sure you correctly fulfill the fields</string>
+
+    <!-- Campaign Activity -->
+    <string name="campaign_activity_card_empty">Add New Characters</string>
+    <string name="campaign_tv_players">active players</string>
+    <string name="campaign_team_title">Team</string>
+    <string name="campaign_tv_encounters">Encounters</string>
+    <string name="campaign_encounter_card_creatures">Creatures</string>
+    <string name="campaign_activity_new_encounter">Add a new encounter</string>
+    <string name="add_campaign_game_text">Dungeon &amp; Dragon</string>
+    <string name="player_cardview_initmodifier">Initiative modifier:</string>
+
+    <!-- Add Character Activity -->
+    <string name="add_character_activity_title">Add Character</string>
+    <string name="add_character_name">Character Name</string>
+    <string name="add_character_hp">Hit Points</string>
+    <string name="add_character_ac">Armor Class</string>
+    <string name="add_character_init_modifier">Initiative Modifier</string>
+    <string name="add_character_button_other_character">Add Another Character</string>
+
+    <!-- Team Activity -->
+    <string name="team_activity_add_char_tips">Please add a Character to your Team</string>
+    <string name="team_activity_team_name_hint">Team Name</string>
+
+    <!-- Add Creature Activity -->
+    <string name="add_another_enemy">Add Another Creature</string>
+    <string name="encounter_activity_encounter_name_hint">Encounter Name</string>
+    <string name="encounter_activity_add_creature_tips">Please add a Creature to your Encounter</string>
+
+    <!-- Utils -->
+    <string name="button_done">Done</string>
+    <string name="add_enemy_name">Enemy Name</string>
+    <string name="fight_activity_rolled_init">Rolled Initiative: </string>
+
+
+</resources>

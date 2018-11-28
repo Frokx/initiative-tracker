@@ -1,0 +1,411 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "da8e8f195e497165131280c8bacfe01b",
+    "entities": [
+      {
+        "tableName": "Campaign",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`campaign_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `campaign_name` TEXT NOT NULL, `campaign_game` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "campaign_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "campaign_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "game",
+            "columnName": "campaign_game",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "campaign_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Team",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`team_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `team_name` TEXT NOT NULL, `campaign_id_fk` INTEGER NOT NULL, FOREIGN KEY(`campaign_id_fk`) REFERENCES `Campaign`(`campaign_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "team_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "team_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "campaignId",
+            "columnName": "campaign_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "team_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Team_campaign_id_fk",
+            "unique": false,
+            "columnNames": [
+              "campaign_id_fk"
+            ],
+            "createSql": "CREATE  INDEX `index_Team_campaign_id_fk` ON `${TABLE_NAME}` (`campaign_id_fk`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Campaign",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "campaign_id_fk"
+            ],
+            "referencedColumns": [
+              "campaign_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Character",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`character_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `character_name` TEXT NOT NULL, `character_ac` INTEGER NOT NULL, `character_hp` INTEGER NOT NULL, `character_init` INTEGER NOT NULL, `team_id_fk` INTEGER NOT NULL, `name` TEXT NOT NULL, `armorClass` INTEGER NOT NULL, `hitPoints` INTEGER NOT NULL, `initiativeModifier` INTEGER NOT NULL, `rolledInitiative` INTEGER NOT NULL, `currentHp` INTEGER NOT NULL, FOREIGN KEY(`team_id_fk`) REFERENCES `Team`(`team_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "character_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "character_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armorClass",
+            "columnName": "character_ac",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hitPoints",
+            "columnName": "character_hp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "initiativeModifier",
+            "columnName": "character_init",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamId",
+            "columnName": "team_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armorClass",
+            "columnName": "armorClass",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hitPoints",
+            "columnName": "hitPoints",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "initiativeModifier",
+            "columnName": "initiativeModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rolledInitiative",
+            "columnName": "rolledInitiative",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentHp",
+            "columnName": "currentHp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "character_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Character_team_id_fk",
+            "unique": false,
+            "columnNames": [
+              "team_id_fk"
+            ],
+            "createSql": "CREATE  INDEX `index_Character_team_id_fk` ON `${TABLE_NAME}` (`team_id_fk`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Team",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "team_id_fk"
+            ],
+            "referencedColumns": [
+              "team_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Encounter",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`encounter_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `encounter_name` TEXT NOT NULL, `campaign_id_fk` INTEGER NOT NULL, FOREIGN KEY(`campaign_id_fk`) REFERENCES `Campaign`(`campaign_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "encounter_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "encounter_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "campaignId",
+            "columnName": "campaign_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "encounter_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Encounter_campaign_id_fk",
+            "unique": false,
+            "columnNames": [
+              "campaign_id_fk"
+            ],
+            "createSql": "CREATE  INDEX `index_Encounter_campaign_id_fk` ON `${TABLE_NAME}` (`campaign_id_fk`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Campaign",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "campaign_id_fk"
+            ],
+            "referencedColumns": [
+              "campaign_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Creature",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`creature_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `creature_name` TEXT NOT NULL, `creature_ac` INTEGER NOT NULL, `creature_hp` INTEGER NOT NULL, `creature_init` INTEGER NOT NULL, `name` TEXT NOT NULL, `armorClass` INTEGER NOT NULL, `hitPoints` INTEGER NOT NULL, `initiativeModifier` INTEGER NOT NULL, `rolledInitiative` INTEGER NOT NULL, `currentHp` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "creature_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "creature_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armorClass",
+            "columnName": "creature_ac",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hitPoints",
+            "columnName": "creature_hp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "initiativeModifier",
+            "columnName": "creature_init",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armorClass",
+            "columnName": "armorClass",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hitPoints",
+            "columnName": "hitPoints",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "initiativeModifier",
+            "columnName": "initiativeModifier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rolledInitiative",
+            "columnName": "rolledInitiative",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentHp",
+            "columnName": "currentHp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "creature_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "EncounterCreature",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`encounter_creature_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `encounter_id_fk` INTEGER NOT NULL, `creature_id_fk` INTEGER NOT NULL, FOREIGN KEY(`creature_id_fk`) REFERENCES `Creature`(`creature_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`encounter_id_fk`) REFERENCES `Encounter`(`encounter_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "encounter_creature_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "encounterId",
+            "columnName": "encounter_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creatureId",
+            "columnName": "creature_id_fk",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "encounter_creature_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_EncounterCreature_creature_id_fk",
+            "unique": false,
+            "columnNames": [
+              "creature_id_fk"
+            ],
+            "createSql": "CREATE  INDEX `index_EncounterCreature_creature_id_fk` ON `${TABLE_NAME}` (`creature_id_fk`)"
+          },
+          {
+            "name": "index_EncounterCreature_encounter_id_fk",
+            "unique": false,
+            "columnNames": [
+              "encounter_id_fk"
+            ],
+            "createSql": "CREATE  INDEX `index_EncounterCreature_encounter_id_fk` ON `${TABLE_NAME}` (`encounter_id_fk`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Creature",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "creature_id_fk"
+            ],
+            "referencedColumns": [
+              "creature_id"
+            ]
+          },
+          {
+            "table": "Encounter",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "encounter_id_fk"
+            ],
+            "referencedColumns": [
+              "encounter_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"da8e8f195e497165131280c8bacfe01b\")"
+    ]
+  }
+}
